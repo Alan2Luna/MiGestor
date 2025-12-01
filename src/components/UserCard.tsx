@@ -1,7 +1,7 @@
 import type { User } from "@/types/User";
 import { motion } from "motion/react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface Props {
   user: User;

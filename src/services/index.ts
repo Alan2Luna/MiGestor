@@ -1,6 +1,6 @@
-import { api } from "../lib/api-client";
-import { type ApiResponse } from "../types/api";
-import type { User } from "../types/User";
+import { api } from "@/lib/api-client";
+import { type ApiResponse } from "@/types/api";
+import type { User } from "@/types/User";
 
 
 export async function getUsers(): Promise<User[]> {
