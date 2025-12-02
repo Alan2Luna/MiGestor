@@ -10,6 +10,6 @@ export function useUsers() {
   })
 
   return {
-    usersQuery
+    usersQuery,
   }
 }

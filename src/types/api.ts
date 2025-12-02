@@ -1,6 +1,11 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import type { User } from "./User";
 
-export interface ApiResponse<T> {
+export interface ApiUserResponse {
+  data: User;
+}
+
+export interface ApiUsersResponse<T> {
   page: number;
   per_page: number;
   total: number;
