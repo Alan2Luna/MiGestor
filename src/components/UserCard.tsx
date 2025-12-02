@@ -2,6 +2,7 @@ import type { User } from "@/types/User";
 import { motion } from "motion/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router";
 
 interface Props {
   user: User;
@@ -10,6 +11,11 @@ interface Props {
 
 export function UserCard({ user, index }: Props) {
   const { id, first_name, last_name, email, avatar } = user;
+  const navigate = useNavigate();
+
+  const navigateToUserDetail = () => {
+    navigate(`/user/${id}`);
+  }
 
   return(
     <motion.div
@@ -19,7 +25,7 @@ export function UserCard({ user, index }: Props) {
     >
       <Card 
           className="cursor-pointer transition-all duration-300"
-          onClick={() => console.log(id)}
+          onClick={navigateToUserDetail}
         >
           <CardContent className="p-4">
             <div className="flex items-start gap-4">
