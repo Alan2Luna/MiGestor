@@ -16,10 +16,6 @@ export function HomePage() {
   const { usersQuery } = useUsers();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  if(usersQuery.isLoading) {
-    return <p>Loading...</p>
-  }
-
   const toggleDialog = () => {
     setIsDialogOpen(prev => !prev)
   }

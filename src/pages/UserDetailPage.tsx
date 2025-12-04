@@ -21,14 +21,6 @@ export function UserDetailPage() {
     });
   }
 
-  if(!id) {
-    return (<div>Nada</div>)
-  }
-
-  if(userQuery.isLoading) {
-    return(<p>Loading...</p>)
-  }
-
   return (
     <div className="min-h-screen bg-linear-150 from-white to-cyan-50">
       <div className="container max-w-4xl mx-auto p-6 space-y-6">
