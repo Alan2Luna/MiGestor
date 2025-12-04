@@ -6,13 +6,19 @@ import { useUser } from "@/hooks/useUser";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export function Detail() {
+export function UserDetailPage() {
   const { id } = useParams();
   const { userQuery } = useUser(Number(id));
   const navigation = useNavigate();
 
   const goBack = () => {
     navigation("/");
+  }
+
+  const navigateToEditUser = () => {
+    navigation(`/user/${id}/edit`, {
+      state: userQuery.data,
+    });
   }
 
   if(!id) {
@@ -31,7 +37,7 @@ export function Detail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <Button variant="ghost" onClick={goBack}>
+          <Button variant="ghost" onClick={goBack} className="cursor-pointer">
             <ArrowLeft />
             Volver
           </Button>
@@ -52,6 +58,8 @@ export function Detail() {
                   <h1 className="text-3xl font-bold mb-2">{userQuery.data?.first_name} {userQuery.data?.last_name}</h1>
                 </div>
                 <Button
+                  className="cursor-pointer"
+                  onClick={navigateToEditUser}
                 >
                   <Edit className="mr-2 h-4 w-4" />
                   Editar

@@ -1,7 +1,7 @@
 import { UserCard } from "@/components/UserCard";
 import { useUsers } from "@/hooks/useUsers";
 
-export function Home() {
+export function HomePage() {
   const { usersQuery } = useUsers();
 
   if(usersQuery.isLoading) {
