@@ -1,32 +1,28 @@
 import { useForm } from "react-hook-form";
 import { zodResolver} from "@hookform/resolvers/zod";
 import { motion } from "motion/react";
-import { z } from "zod";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { Button } from "./ui/button";
 import { Save } from "lucide-react";
 import { ErrorMessage } from "@hookform/error-message";
-
-const schema = z.object({
-  email: z.email({ message: "Por favor, ingresa un correo electrónico válido."} ), 
-  first_name: z.string().min(1, { message: 'Por favor, ingresa un nombre.' }),
-  last_name: z.string().min(1, { message: "Por favor, ingresa un apellido."}),
-});
-
-type UserSchema = z.infer<typeof schema>;
+import { useUser } from "@/hooks/useUser";
+import { UserFormSchema, type UserForm } from "@/types/UserForm";
 
 export function  EditForm() {
+  const { id } = useParams();
   const location = useLocation();
+  const { userMutation } = useUser(Number(id));
+
   const { email, first_name, last_name } = location.state || {};
   const { handleSubmit, register, formState: { isDirty, errors } } = useForm({
     defaultValues: { email, first_name, last_name },
-    resolver: zodResolver(schema),
+    resolver: zodResolver(UserFormSchema),
   });
 
-  const handleOnSubmit = (formData: UserSchema) => {
-    console.log(formData)
+  const handleOnSubmit = (formData: UserForm) => {
+    userMutation.mutate(formData);
   }
 
   return(
