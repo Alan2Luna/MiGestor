@@ -17,7 +17,7 @@ const schema = z.object({
 
 type UserSchema = z.infer<typeof schema>;
 
-export function EditForm() {
+export function  EditForm() {
   const location = useLocation();
   const { email, first_name, last_name } = location.state || {};
   const { handleSubmit, register, formState: { isDirty, errors } } = useForm({
@@ -30,15 +30,15 @@ export function EditForm() {
   }
 
   return(
-    <form className="space-y-6" onSubmit={handleSubmit(handleOnSubmit)}>
+    <form className="space-y-6 text-muted-foreground" onSubmit={handleSubmit(handleOnSubmit)}>
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
         className="space-y-2"
       >
-        <Label htmlFor="first_name">Nombre</Label>
-        <Input {...register("first_name")} />
+        <Label htmlFor="first_name" className="text-black">Nombre</Label>
+        <Input {...register("first_name")} className="border-muted-foreground text-black" />
         <ErrorMessage name="first_name" errors={errors} />
       </motion.div>
 
@@ -48,8 +48,8 @@ export function EditForm() {
         transition={{ delay: 0.25 }}
         className="space-y-2"
       >
-        <Label htmlFor="last_name">Apellido</Label>
-        <Input {...register("last_name")} />
+        <Label htmlFor="last_name" className="text-black">Apellido</Label>
+        <Input {...register("last_name")} className="border-muted-foreground text-black" />
         <ErrorMessage name="last_name" errors={errors}/>
       </motion.div>
 
@@ -59,8 +59,8 @@ export function EditForm() {
         transition={{ delay: 0.3 }}
         className="space-y-2"
       >
-        <Label htmlFor="email">Email</Label>
-        <Input {...register("email")} />
+        <Label htmlFor="email" className="text-black">Email</Label>
+        <Input {...register("email")} className="border-muted-foreground text-black" />
         <ErrorMessage name="email" errors={errors}/>
       </motion.div>
 
@@ -77,7 +77,7 @@ export function EditForm() {
         <Button
           type="button"
           variant="outline"
-          className="flex-1"
+          className="flex-1 text-gray-950 cursor-pointer"
         >
           Cancelar
         </Button>
