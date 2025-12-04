@@ -15,7 +15,7 @@ export function EditUserPage() {
   }
 
   return(
-    <div className="min-h-screen bg-linear-150 from-white to-cyan-50/20">
+    <div className="min-h-screen bg-linear-150 from-white to-cyan-50">
       <div className="container max-w-3xl mx-auto p-6 space-y-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
