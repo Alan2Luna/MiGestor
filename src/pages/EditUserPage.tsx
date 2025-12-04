@@ -15,7 +15,7 @@ export function EditUserPage() {
   }
 
   return(
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-linear-150 from-white to-cyan-50/20">
       <div className="container max-w-3xl mx-auto p-6 space-y-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -37,8 +37,8 @@ export function EditUserPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.4 }}
         >
-          <Card>
-            <CardHeader>
+          <Card className="shadow-elegant border-border/50 bg-card/80 backdrop-blur-xl overflow-hidden">
+            <CardHeader className="border-b border-border">
               <CardTitle className="text-2xl">Editar Usuario</CardTitle>
             </CardHeader>
             <CardContent className="p-6">

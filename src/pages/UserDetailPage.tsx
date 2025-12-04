@@ -30,58 +30,58 @@ export function UserDetailPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-linear-150 from-white to-cyan-50/20">
       <div className="container max-w-4xl mx-auto p-6 space-y-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <Button variant="ghost" onClick={goBack} className="cursor-pointer">
-            <ArrowLeft />
+          <Button variant="ghost" onClick={goBack} className="cursor-pointer mb-4">
+            <ArrowLeft className="mr-2 h-4 w-4"/>
             Volver
           </Button>
         </motion.div>
-        <Card>
-          <div />
-        <CardContent className="p-8 -mt-16">
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <Avatar className="h-32 w-32 border-4 border-card shadow-elegant">
-              <AvatarImage src={userQuery.data?.avatar} alt="" />
-              <AvatarFallback className="bg-primary/10 text-primary text-2xl">
-                {userQuery.data?.first_name}{userQuery.data?.last_name}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1 pt-16 md:pt-0">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                <div>
-                  <h1 className="text-3xl font-bold mb-2">{userQuery.data?.first_name} {userQuery.data?.last_name}</h1>
-                </div>
-                <Button
-                  className="cursor-pointer"
-                  onClick={navigateToEditUser}
-                >
-                  <Edit className="mr-2 h-4 w-4" />
-                  Editar
-                </Button>
-              </div>
-              <div className="grid grid-cols-1 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50"
-                >
-                  <Mail className="h-5 w-5 text-primary" />
+        <Card className="shadow-elegant border-border/50 bg-card/80 backdrop-blur-2xl overflow-hidden">
+          <div className="h-32 bg-linear-150 from-primary to-primary/70" />
+          <CardContent className="p-8 -mt-16">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <Avatar className="h-32 w-32 border-4 border-card shadow-elegant">
+                <AvatarImage src={userQuery.data?.avatar} alt="" />
+                <AvatarFallback className="bg-primary/10 text-primary text-2xl">
+                  {userQuery.data?.first_name}{userQuery.data?.last_name}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 pt-16 md:pt-0">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                   <div>
-                    <p className="text-xs text-muted-foreground">Email</p>
-                    <p className="font-medium">{userQuery.data?.email}</p>
+                    <h1 className="text-3xl font-bold mb-2">{userQuery.data?.first_name} {userQuery.data?.last_name}</h1>
                   </div>
-                </motion.div>
+                  <Button
+                    className="cursor-pointer shadow-elegant text-white"
+                    onClick={navigateToEditUser}
+                  >
+                    <Edit className="mr-2 h-4 w-4" />
+                    Editar
+                  </Button>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50"
+                  >
+                    <Mail className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="text-xs text-muted-foreground">Email</p>
+                      <p className="font-medium">{userQuery.data?.email}</p>
+                    </div>
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </CardContent>
+          </CardContent>
         </Card>
       </div>
     </div>

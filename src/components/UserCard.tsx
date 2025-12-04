@@ -24,14 +24,14 @@ export function UserCard({ user, index }: Props) {
       transition={{ delay: index * 0.1, duration: 0.3 }}
     >
       <Card 
-          className="cursor-pointer transition-all duration-300"
+          className="cursor-pointer transition-all duration-300 border-border/50 bg-card/80 shadow-card hover:scale-105 hover:shadow-elegant backdrop-blur-3xl"
           onClick={navigateToUserDetail}
         >
           <CardContent className="p-4">
             <div className="flex items-start gap-4">
-              <Avatar className="h-18 w-18 border-2">
+              <Avatar className="h-18 w-18 border-2 border-primary/20">
                 <AvatarImage src={avatar} alt="" />
-                <AvatarFallback className="font-bold text-xl">
+                <AvatarFallback className="font-bold text-xl bg-primary/10 text-primary">
                   {first_name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
@@ -40,7 +40,7 @@ export function UserCard({ user, index }: Props) {
                 <h3 className="font-semibold text-lg mb-1">
                   {first_name} {last_name}
                 </h3>
-                <p className="text-sm mb-2">
+                <p className="text-muted-foreground text-sm mb-2">
                   {email}
                 </p>
               </div>

@@ -70,7 +70,7 @@ export function EditForm() {
         transition={{ delay: 0.35 }}
         className="flex gap-3 pt-4"
       >
-        <Button type="submit" className="flex-1 cursor-pointer" disabled={!isDirty}>
+        <Button type="submit" className="flex-1 cursor-pointer shadow-elegant text-white" disabled={!isDirty}>
           <Save className="mr-2 h-4 w-4" />
           Guardar Cambios
         </Button>

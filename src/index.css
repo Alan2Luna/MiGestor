@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@theme {
+  --color-primary: rgb(13, 162, 231);
+  --color-secondary: rgb(241, 245, 249);
+
+  --color-muted:rgb(241, 245, 249);
+  --color-card: rgb(255, 255, 255);
+  --color-card-foreground: rgb(8, 20, 33);
+  --color-muted-foreground: rgb(102, 128, 153);
+
+  --shadow-card: 0 2px 8px -1px rgba(41, 51, 61, 0.1);
+  --shadow-elegant: 0 5px 20px rgba(16, 163, 214, 0.15);
+  --color-border: rgb(219, 230, 240);
+}
