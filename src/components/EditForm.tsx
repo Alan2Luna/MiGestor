@@ -3,26 +3,32 @@ import { zodResolver} from "@hookform/resolvers/zod";
 import { motion } from "motion/react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { Button } from "./ui/button";
 import { Save } from "lucide-react";
 import { ErrorMessage } from "@hookform/error-message";
-import { useUser } from "@/hooks/useUser";
-import { UserFormSchema, type UserForm } from "@/types/UserForm";
+import { userFormSchema, type UserForm } from "@/types/UserForm";
+import { useUserMutation } from "@/hooks/useUserMutation";
 
 export function  EditForm() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const location = useLocation();
-  const { userMutation } = useUser(Number(id));
+  const { userMutation } = useUserMutation(Number(id));
 
   const { email, first_name, last_name } = location.state || {};
   const { handleSubmit, register, formState: { isDirty, errors } } = useForm({
     defaultValues: { email, first_name, last_name },
-    resolver: zodResolver(UserFormSchema),
+    resolver: zodResolver(userFormSchema),
   });
+
+  const goBack = () => {
+    navigate(`/user/${id}`);
+  }
 
   const handleOnSubmit = (formData: UserForm) => {
     userMutation.mutate(formData);
+    goBack()
   }
 
   return(
@@ -66,7 +72,11 @@ export function  EditForm() {
         transition={{ delay: 0.35 }}
         className="flex gap-3 pt-4"
       >
-        <Button type="submit" className="flex-1 cursor-pointer shadow-elegant text-white" disabled={!isDirty}>
+        <Button 
+          type="submit"
+          className="flex-1 cursor-pointer shadow-elegant text-white" 
+          disabled={!isDirty || userMutation.isPending}
+        >
           <Save className="mr-2 h-4 w-4" />
           Guardar Cambios
         </Button>
@@ -74,6 +84,7 @@ export function  EditForm() {
           type="button"
           variant="outline"
           className="flex-1 text-gray-950 cursor-pointer"
+          onClick={goBack}
         >
           Cancelar
         </Button>

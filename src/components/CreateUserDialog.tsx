@@ -4,27 +4,24 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
 import { InputError } from "./InputError";
+import { userFormSchema, type UserForm } from "@/types/UserForm";
+import { useUserMutation } from "@/hooks/useUserMutation";
 
 interface Props {
   isOpen: boolean;
   onOpenChange: () => void;
 }
 
-const schema = z.object({
-  email: z.email({ message: "Por favor, ingresa un correo electrónico válido."} ), 
-  first_name: z.string().min(1, { message: 'Por favor, ingresa un nombre.' }),
-  last_name: z.string().min(1, { message: "Por favor, ingresa un apellido."}),
-});
-
 export function CreateUserDialog({ isOpen, onOpenChange }: Props) {
+  const { createUserMutation } = useUserMutation();
   const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(userFormSchema),
   });
 
-  const handleOnSubmit = (formData: z.infer<typeof schema>) => {
-    console.log(formData)
+  const handleOnSubmit = (formData: UserForm) => {
+    createUserMutation.mutate(formData);
+    onOpenChange()
   }
 
   return (
@@ -54,7 +51,7 @@ export function CreateUserDialog({ isOpen, onOpenChange }: Props) {
             <Button type="submit" className="flex-1 text-white">
               Crear Usuario
             </Button>
-            <Button className="flex-1 bg-white border">
+            <Button type="button" className="flex-1 bg-white border hover:bg-white" onClick={onOpenChange}>
               Cancelar
             </Button>
           </div>
