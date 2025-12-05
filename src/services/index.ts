@@ -21,7 +21,7 @@ export async function getUserById(id: number): Promise<User> {
     return response.data;
   } catch (e) {
     console.error(e);
-    throw Error(e);
+    throw Error("Error obteniendo usuario por id")
   }
 }
 
@@ -29,7 +29,8 @@ export async function createUser(body: UserForm) {
   try {
     console.log("USUARIO CREADO: ", body);
   } catch (e) {
-    throw Error(e);
+    console.error(e)
+    throw Error("Error creando usuario");
   }
 }
 
@@ -38,6 +39,6 @@ export async function updateUser(id: number, body: UserForm) {
     await api.patch("/users/" + id, body);
   } catch(error) {
     console.error(error);
-    throw Error("")
+    throw Error("Error actualizando usuario")
   }
 }
