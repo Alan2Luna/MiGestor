@@ -25,7 +25,7 @@ vi.mock("../src/services/index", async(importOriginal) => {
 export const mockUpdateUserFn = (vi.mocked(await import("../src/services/index")) as any).updateUser;
 
 describe("EditForm component", () => {
-  it("", async () => {
+  it("should call updateUser with correct id and transformed payload on submit", async () => {
     const userMock = {
       first_name: "Alan",
       last_name: "Luna",
