@@ -40,7 +40,7 @@ export function  EditForm() {
         className="space-y-2"
       >
         <Label htmlFor="first_name" className="text-black">Nombre</Label>
-        <Input {...register("first_name")} className="border-muted-foreground text-black" />
+        <Input id="first_name" {...register("first_name")} className="border-muted-foreground text-black" />
         <ErrorMessage name="first_name" errors={errors} />
       </motion.div>
 
@@ -51,7 +51,7 @@ export function  EditForm() {
         className="space-y-2"
       >
         <Label htmlFor="last_name" className="text-black">Apellido</Label>
-        <Input {...register("last_name")} className="border-muted-foreground text-black" />
+        <Input id="last_name" {...register("last_name")} className="border-muted-foreground text-black" />
         <ErrorMessage name="last_name" errors={errors}/>
       </motion.div>
 
@@ -62,7 +62,7 @@ export function  EditForm() {
         className="space-y-2"
       >
         <Label htmlFor="email" className="text-black">Email</Label>
-        <Input {...register("email")} className="border-muted-foreground text-black" />
+        <Input id="email" {...register("email")} className="border-muted-foreground text-black" />
         <ErrorMessage name="email" errors={errors}/>
       </motion.div>
 

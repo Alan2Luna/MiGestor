@@ -1,10 +1,10 @@
 import { motion } from "motion/react"
-import { UserCard } from "@/components/UserCard";
 import { useUsers } from "@/hooks/useUsers";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
 import { ModalFallback } from "@/components/ModalFallback";
+import { UserList } from "@/components/UserList";
 
 const CreateUserDialog = lazy(() =>
   import("@/components/CreateUserDialog").then((module) => ({ 
@@ -43,9 +43,7 @@ export function HomePage() {
           </Button>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-          {usersQuery.data?.map((user, index) => (
-            <UserCard key={user.id} user={user} index={index} />
-          ))}
+          <UserList users={usersQuery.data} />
         </div>
       </div>
       {
