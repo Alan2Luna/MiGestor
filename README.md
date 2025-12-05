@@ -29,6 +29,19 @@ Follow these steps to get started:
    npm install
    ```
 
+## Environment Variables
+
+Before running the application, you need to set up the environment variables:
+
+1. **Copy the environment template**:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Fill in the environment variables** in the `.env` file:
+   - `VITE_API_BASE_URL`: The base URL for your API
+   - `VITE_API_KEY`: Your API key for authentication
+
 ## Usage
 
 To run the project locally, use the following command:
