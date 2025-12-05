@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
 import { ModalFallback } from "@/components/ModalFallback";
 import { UserList } from "@/components/UserList";
+import { Spinner } from "@/components/ui/spinner";
 
 const CreateUserDialog = lazy(() =>
   import("@/components/CreateUserDialog").then((module) => ({ 
@@ -18,6 +19,14 @@ export function HomePage() {
 
   const toggleDialog = () => {
     setIsDialogOpen(prev => !prev)
+  }
+
+  if(usersQuery.isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-linear-150 from-white to-cyan-50">
+        <Spinner className="size-20 text-primary"/>
+      </div>
+    )
   }
 
   return(
