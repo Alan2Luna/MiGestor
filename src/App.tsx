@@ -5,6 +5,7 @@ import './index.css'
 import { UserDetailPage } from "./pages/UserDetailPage";
 import { EditUserPage } from "./pages/EditUserPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { Toaster } from "./components/ui/sonner";
 
 const queryClient = new QueryClient();
 
@@ -12,6 +13,7 @@ export function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster dir="ltr" position="top-right" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
