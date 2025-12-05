@@ -6,6 +6,7 @@ import { lazy, Suspense, useState } from "react";
 import { ModalFallback } from "@/components/ModalFallback";
 import { UserList } from "@/components/UserList";
 import { Spinner } from "@/components/ui/spinner";
+import { PaginateUserList } from "@/components/PaginateUserList";
 
 const CreateUserDialog = lazy(() =>
   import("@/components/CreateUserDialog").then((module) => ({ 
@@ -14,8 +15,13 @@ const CreateUserDialog = lazy(() =>
 );
 
 export function HomePage() {
-  const { usersQuery } = useUsers();
+  const [page, setPage] = useState(1);
+  const { usersQuery } = useUsers(page);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handlePagination = (page: number) => {
+    setPage(prev => (page + prev))
+  }
 
   const toggleDialog = () => {
     setIsDialogOpen(prev => !prev)
@@ -52,7 +58,10 @@ export function HomePage() {
           </Button>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-          <UserList users={usersQuery.data} />
+          <UserList users={usersQuery.data?.data} />
+        </div>
+        <div className="mt-8">
+          <PaginateUserList totalPages={2} currentPage={page} handlePagination={handlePagination}/>
         </div>
       </div>
       {

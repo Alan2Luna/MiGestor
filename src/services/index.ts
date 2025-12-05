@@ -4,14 +4,14 @@ import type { User } from "@/types/User";
 import type { UserForm } from "@/types/UserForm";
 
 
-export async function getUsers(): Promise<User[]> {
+export async function getUsers(page: number): Promise<ApiUsersResponse<User[]>> {
   try {
-    const response = await api.get<ApiUsersResponse<User[]>>("/users?page=" + 1);
+    const response = await api.get<ApiUsersResponse<User[]>>("/users?page=" + page);
 
-    return response.data;
+    return response;
   } catch(e) {
     console.error(e);
-    return []
+    throw Error("Error cargando usuarios")
   }
 }
 
